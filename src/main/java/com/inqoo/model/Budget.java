@@ -1,16 +1,38 @@
 package com.inqoo.model;
 
-import lombok.Data;
-
-import java.util.HashMap;
+import com.inqoo.model.costs.Salary;
+import com.inqoo.model.incomes.Tuition;
 import java.util.HashSet;
 
-@Data
+
 public class Budget {
-    private HashSet<Double> incomes;
-    private HashSet<Double> costs;
+    private HashSet<Double> incomes = new HashSet<>();
+    private HashSet<Double> costs = new HashSet<>();
 
-    public void addSalaryToCost(){
+    public void addSalaryToCost(Salary salary) {
+        costs.add(salary.getMonthlySalary());
+    }
 
+    public void addTuitionToIncomes(Tuition tuition) {
+        incomes.add(tuition.getMonthlyTuition());
+    }
+
+    public double getIncomes() {
+        double sum = 0;
+        for (double d: incomes){
+            sum += d;
+        }
+        return sum;
+    }
+
+    public double getCosts() {
+        double sum = 0;
+        for (double d: costs){
+            sum += d;
+        }
+        return sum;
+    }
+    public double getBalance() {
+        return getIncomes() - getCosts();
     }
 }
