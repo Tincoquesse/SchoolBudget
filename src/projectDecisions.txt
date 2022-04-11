@@ -1,1 +1,2 @@
 22-04-10: I decided to use MVC Design Pattern with control, model and view directories.
+22-04-11: I'm using hashsets of objects to store information about incomes and expenses.

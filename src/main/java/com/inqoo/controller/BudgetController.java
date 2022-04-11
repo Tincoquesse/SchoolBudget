@@ -1,6 +1,8 @@
 package com.inqoo.controller;
 
 import com.inqoo.model.Budget;
+import com.inqoo.model.costs.Employee;
+import com.inqoo.model.incomes.Student;
 import com.inqoo.view.BudgetView;
 
 public class BudgetController {
@@ -13,9 +15,17 @@ public class BudgetController {
         this.view = view;
     }
 
+    public void addSalaryToBudget(Employee salary) {
+        this.budget.addEmployeeToPayroll(salary);
+        System.out.println("Salary added to Costs!");
+    }
 
+    public void addTuitionToBudget(Student tuition) {
+        this.budget.addStudentToStudentsList(tuition);
+        System.out.println("Tuition added to Costs!");
+    }
 
     public void updateBudgetView(){
-        view.printBudgetDetails(budget.getIncomes(), budget.getCosts(), budget.getBalance());
+        view.printBudgetDetails(budget.getStudentsList(), budget.getPayroll(), budget.getBalance());
     }
 }

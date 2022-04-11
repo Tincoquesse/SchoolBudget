@@ -6,7 +6,7 @@ public class BudgetView {
         System.out.println("Budget Details: ");
         System.out.println("Incomes: " + income);
         System.out.println("Costs: " + costs);
-        System.out.println("Balance: " + balance);
+        System.out.println("Balance: " + balance + "\n");
     }
 
 }

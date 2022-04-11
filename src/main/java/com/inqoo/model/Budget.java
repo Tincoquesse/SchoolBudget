@@ -1,38 +1,38 @@
 package com.inqoo.model;
 
-import com.inqoo.model.costs.Salary;
-import com.inqoo.model.incomes.Tuition;
+import com.inqoo.model.costs.Employee;
+import com.inqoo.model.incomes.Student;
 import java.util.HashSet;
 
 
 public class Budget {
-    private HashSet<Double> incomes = new HashSet<>();
-    private HashSet<Double> costs = new HashSet<>();
+    private HashSet<Employee> payroll = new HashSet<>();
+    private HashSet<Student> studentsList = new HashSet<>();
 
-    public void addSalaryToCost(Salary salary) {
-        costs.add(salary.getMonthlySalary());
+    public void addEmployeeToPayroll(Employee employee) {
+        payroll.add(employee);
     }
 
-    public void addTuitionToIncomes(Tuition tuition) {
-        incomes.add(tuition.getMonthlyTuition());
+    public void addStudentToStudentsList(Student student) {
+        studentsList.add(student);
     }
 
-    public double getIncomes() {
+    public double getPayroll() {
         double sum = 0;
-        for (double d: incomes){
-            sum += d;
+        for (Employee e: payroll){
+            sum += e.getMonthlySalary();
         }
         return sum;
     }
 
-    public double getCosts() {
+    public double getStudentsList() {
         double sum = 0;
-        for (double d: costs){
-            sum += d;
+        for (Student s: studentsList){
+            sum += s.getMonthlyTuition();
         }
         return sum;
     }
     public double getBalance() {
-        return getIncomes() - getCosts();
+        return getStudentsList() - getPayroll();
     }
 }
