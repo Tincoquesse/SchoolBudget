@@ -3,11 +3,11 @@ package com.inqoo.model.incomes;
 import lombok.Data;
 
 @Data
-public class Tuition {
+public class Student {
     private String studentName;
     private double monthlyTuition;
 
-    public Tuition(String studentName, double monthlyTuition) {
+    public Student(String studentName, double monthlyTuition) {
         this.studentName = studentName;
         this.monthlyTuition = monthlyTuition;
     }
