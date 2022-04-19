@@ -22,7 +22,7 @@ public class BudgetController {
 
     public void addTuitionToBudget(Student tuition) {
         this.budget.addStudentToStudentsList(tuition);
-        System.out.println("Tuition added to Costs!");
+        System.out.println("Tuition added to Incomes!");
     }
 
     public void updateBudgetView(){
