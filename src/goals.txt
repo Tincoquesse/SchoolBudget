@@ -1,0 +1,50 @@
+JAVA - konsultacje; Założenia - 2 wywiad z klientem:
+
+
+
+1. Z notatek analityka:
+
+a) szkoła ma możliwości lokalowe, aby zorganizować 5 klas
+
+b) minimalna liczebność klasy to 10 uczniów, maksymalna to 20 uczniów
+
+c) uruchomienie kolejnej klasy niesie ze sobą koszty stałe związane:
+
+- ze sprzątaniem dodatkowej klasy oraz szatni (2500 zł w każdym m-cu)
+
+- z ogrzewaniem ww. pomieszczeń (2000 zł/m-c w m-cach od października do marca)
+
+d) uczniowe płacą czesne w cyklu miesięcznym - łącznie z wakacjami (12 x w roku)
+
+e) średnia pensja nauczyciela to 6000 zł / m-c
+
+f) na jedną klasę przypada jeden nauczyciel
+
+g) obsługa administracyjna szkoły to 0.1 osoby / każdego nauczyciela - ucznia zaokrąglane do pełnego etatu ( > 0.5 - cały etat)
+jeśli liczba osób (n-u) jest poniżej 20
+
+h) dalsze progi - 0.23 dla <20; 36), 0.28 dla <36,49), 0.33 dla > 50 osób
+
+i) pensja osoby z administracji to 70% wynagrodzenia nauczyciela
+
+j) budżet bilansuje się, jeśli po odliczeniu kosztów stałych „zostaje” 30% zysku
+
+k) wszystkie kwoty są netto (ignorujemy koszty dodatkowe wynagrodzeń itp itd)
+
+
+
+2. Cel pierwszego prototypu:
+
+a) uwzględniając ww założenia proszę:
+
+- określić minimalną kwotę czesnego, która przy minimalnych kosztach stałych umożliwi bilansowanie się budżetu szkoły
+
+- wskazać optymalną liczebność (liczba klas i uczniów) dla ww kwoty czesnego w celu maksymalizacji zysku
+
+
+
+3. Założenia techniczne:
+
+a) algorytmy wyliczania kosztów i budżetu proszę zamknąć w klasach implementujących interfejsy w celu łatwej podmiany implementacji
+
+b) prototyp powinien być przetestowany przy pomocy testów jednostkowych

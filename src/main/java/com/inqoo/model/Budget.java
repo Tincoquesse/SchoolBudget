@@ -6,8 +6,8 @@ import java.util.HashSet;
 
 
 public class Budget {
-    private HashSet<Employee> payroll = new HashSet<>();
-    private HashSet<Student> studentsList = new HashSet<>();
+    private final HashSet<Employee> payroll = new HashSet<>();
+    private final HashSet<Student> studentsList = new HashSet<>();
 
     public void addEmployeeToPayroll(Employee employee) {
         payroll.add(employee);
