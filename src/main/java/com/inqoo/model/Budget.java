@@ -1,7 +1,5 @@
 package com.inqoo.model;
 
-import com.inqoo.model.costs.Employee;
-import com.inqoo.model.incomes.Student;
 import java.util.HashSet;
 
 

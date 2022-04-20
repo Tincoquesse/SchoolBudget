@@ -1,16 +1,16 @@
-package com.inqoo.controller;
+package com.inqoo.controler;
 
 import com.inqoo.model.Budget;
-import com.inqoo.model.costs.Employee;
-import com.inqoo.model.incomes.Student;
+import com.inqoo.model.Employee;
+import com.inqoo.model.Student;
 import com.inqoo.view.BudgetView;
 
-public class BudgetController {
+public class BudgetControllerImplementation {
 
     private Budget budget;
     private BudgetView view;
 
-    public BudgetController(Budget budget, BudgetView view) {
+    public BudgetControllerImplementation(Budget budget, BudgetView view) {
         this.budget = budget;
         this.view = view;
     }

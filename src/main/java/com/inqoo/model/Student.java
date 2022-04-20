@@ -1,4 +1,4 @@
-package com.inqoo.model.incomes;
+package com.inqoo.model;
 
 import lombok.Data;
 
