@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class BudgetControlerTest {
 
     @Test
-    public void updadeView(){
+    public void updateView(){
 
     }
 }

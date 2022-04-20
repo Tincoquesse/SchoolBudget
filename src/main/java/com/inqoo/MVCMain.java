@@ -13,7 +13,6 @@ public class MVCMain {
         BudgetView budgetView = new BudgetView();
         BudgetController budgetController = new BudgetController(budget, budgetView);
 
-        budgetController.updateBudgetView();
 
         Employee teacher1 = new Employee("John Snow", 2435);
         Employee teacher2 = new Employee("Rafał Brzozowski", 5432);

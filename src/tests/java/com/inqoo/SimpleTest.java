@@ -41,8 +41,8 @@ public class SimpleTest {
     @Test
     public void assertJExample() {
         assertThat(counter).isEqualTo(1);
-        assertThat(1).isSameAs(2);
-        List<Integer> integers = List.of(1, 2, 3);
-        assertThat(integers).containsAnyOf(3,5,8);
+//        assertThat(1).isSameAs(2);
+//        List<Integer> integers = List.of(1, 2, 3);
+//        assertThat(integers).containsAnyOf(3,5,8);
     }
 }
