@@ -21,7 +21,7 @@ public class BudgetDAORepo implements BudgetDAO {
     }
 
     @Override
-    public void addEmploee(Employee employee) {
+    public void addEmployee(Employee employee) {
         employees.add(employee);
     }
 

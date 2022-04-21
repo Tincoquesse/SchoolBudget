@@ -1,15 +1,17 @@
-package com.inqoo.controler;
+package com.inqoo.controller;
 
-import com.inqoo.BudgetControler;
+import com.inqoo.BudgetController;
 import com.inqoo.model.Budget;
 import com.inqoo.model.Employee;
 import com.inqoo.model.Student;
+import com.inqoo.repository.BudgetDAORepo;
 import com.inqoo.view.BudgetView;
 
-public class BudgetControllerImplementation implements BudgetControler {
+public class BudgetControllerImplementation implements BudgetController {
 
     private Budget budget;
     private BudgetView view;
+    private BudgetDAORepo budgetDAORepo;
 
     public BudgetControllerImplementation(Budget budget, BudgetView view) {
         this.budget = budget;
@@ -28,5 +30,25 @@ public class BudgetControllerImplementation implements BudgetControler {
 
     public void updateBudgetView(){
         view.printBudgetDetails(budget.getStudentsList(), budget.getPayroll(), budget.getBalance());
+    }
+
+    @Override
+    public void setMonthlyTuition(double monthlyTuition) {
+
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        budgetDAORepo.addStudent(student);
+    }
+
+    @Override
+    public void addEmployee(Employee employee) {
+
+    }
+
+    @Override
+    public void setClassSize(double classSize) {
+
     }
 }

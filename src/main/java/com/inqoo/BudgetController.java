@@ -1,17 +1,14 @@
 package com.inqoo;
 
-
 import com.inqoo.model.Employee;
 import com.inqoo.model.Student;
 
-import java.util.List;
+public interface BudgetController {
 
-public interface BudgetDAO {
-
+    void setMonthlyTuition(double monthlyTuition);
     void addStudent(Student student);
     void addEmployee(Employee employee);
+    void setClassSize(double classSize);
 
-    List<Student> getAllStudents();
 
-    List<Employee> getAllEmployee();
 }

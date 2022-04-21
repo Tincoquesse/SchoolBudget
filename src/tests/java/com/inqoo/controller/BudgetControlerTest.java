@@ -1,4 +1,4 @@
-package com.inqoo.controler;
+package com.inqoo.controller;
 
 import org.junit.jupiter.api.Test;
 
