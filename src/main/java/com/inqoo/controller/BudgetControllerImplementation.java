@@ -3,6 +3,7 @@ package com.inqoo.controller;
 import com.inqoo.BudgetController;
 import com.inqoo.model.Budget;
 import com.inqoo.model.Employee;
+import com.inqoo.model.Position;
 import com.inqoo.model.Student;
 import com.inqoo.repository.BudgetDAORepo;
 import com.inqoo.view.BudgetView;
@@ -13,42 +14,55 @@ public class BudgetControllerImplementation implements BudgetController {
     private BudgetView view;
     private BudgetDAORepo budgetDAORepo;
 
-    public BudgetControllerImplementation(Budget budget, BudgetView view) {
+
+    public BudgetControllerImplementation(Budget budget, BudgetView view, BudgetDAORepo budgetDAORepo) {
         this.budget = budget;
         this.view = view;
+        this.budgetDAORepo = budgetDAORepo;
     }
 
-    public void addSalaryToBudget(Employee salary) {
-        this.budget.addEmployeeToPayroll(salary);
-        System.out.println("Salary added to Costs!");
-    }
-
-    public void addTuitionToBudget(Student tuition) {
-        this.budget.addStudentToStudentsList(tuition);
-        System.out.println("Tuition added to Incomes!");
-    }
-
-    public void updateBudgetView(){
-        view.printBudgetDetails(budget.getStudentsList(), budget.getPayroll(), budget.getBalance());
+    public void updateBudgetView() {
+        view.printBudgetDetails(budget.getStudentsTuitionSum(), budget.getTeacherSalariesSum(), budget.getAdministrationSalariesSum(), budget.getBuildingCosts(), budget.getBudgetBalance());
     }
 
     @Override
     public void setMonthlyTuition(double monthlyTuition) {
-
+        for (Student student : budgetDAORepo.getAllStudents()) {
+            student.setMonthlyTuition(monthlyTuition);
+        }
     }
 
     @Override
     public void addStudent(Student student) {
-        budgetDAORepo.addStudent(student);
+        if (budgetDAORepo.getAllStudents().size()
+                < (budget.getClassSize() * budget.getNumberOfClasses())) {
+            budgetDAORepo.addStudent(student);
+        } else {
+            System.out.println("Too many Students!");
+        }
     }
 
     @Override
     public void addEmployee(Employee employee) {
-
+        budgetDAORepo.addEmployee(employee);
     }
 
     @Override
-    public void setClassSize(double classSize) {
+    public void setClassSize(int classSize) {
+        budget.setClassSize(classSize);
+    }
 
+    @Override
+    public void setNumberOfClasses(int numberOfClasses) {
+        budget.setNumberOfClasses(numberOfClasses);
+    }
+
+    @Override
+    public void setTeachersSalary(double teacherSalary) {
+        for (Employee employee : budgetDAORepo.getAllEmployee()) {
+            if (employee.getPosition() == Position.TEACHER) {
+                employee.setMonthlySalary(teacherSalary);
+            }
+        }
     }
 }

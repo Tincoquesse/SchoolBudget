@@ -1,36 +1,61 @@
 package com.inqoo.model;
 
-import java.util.HashSet;
+import com.inqoo.repository.BudgetDAORepo;
+import lombok.Data;
 
 
-public class Budget {
-    private final HashSet<Employee> payroll = new HashSet<>();
-    private final HashSet<Student> studentsList = new HashSet<>();
+@Data
+public class Budget implements com.inqoo.Budget {
 
-    public void addEmployeeToPayroll(Employee employee) {
-        payroll.add(employee);
+    private BudgetDAORepo budgetDAORepo;
+
+    private double studentsTuitionSum;
+    private double teacherSalariesSum;
+    private double administrationSalariesSum;
+    private double buildingCosts;
+
+    private int classSize = 10;
+    private int numberOfClasses = 1;
+
+    public Budget(BudgetDAORepo budgetDAORepo) {
+        this.budgetDAORepo = budgetDAORepo;
     }
 
-    public void addStudentToStudentsList(Student student) {
-        studentsList.add(student);
+    @Override
+    public double getBudgetBalance() {
+        return studentsTuitionSum - teacherSalariesSum - administrationSalariesSum - buildingCosts;
     }
 
-    public double getPayroll() {
-        double sum = 0;
-        for (Employee e: payroll){
-            sum += e.getMonthlySalary();
+    public double getAdministrationSalariesSum() {
+        for (Employee employee : budgetDAORepo.getAllEmployee()) {
+            if (employee.getPosition() == Position.ADMINITRATION) {
+                administrationSalariesSum += employee.getMonthlySalary();
+            }
         }
-        return sum;
+        return administrationSalariesSum;
     }
 
-    public double getStudentsList() {
-        double sum = 0;
-        for (Student s: studentsList){
-            sum += s.getMonthlyTuition();
+    public double getStudentsTuitionSum() {
+        studentsTuitionSum = 0;
+        for (Student student : budgetDAORepo.getAllStudents()) {
+            studentsTuitionSum += student.getMonthlyTuition();
         }
-        return sum;
+        return studentsTuitionSum;
     }
-    public double getBalance() {
-        return getStudentsList() - getPayroll();
+
+    public double getBuildingCosts() {
+        buildingCosts = 0;
+        buildingCosts = numberOfClasses * 2500;
+        return buildingCosts;
+    }
+
+    public double getTeacherSalariesSum() {
+        teacherSalariesSum = 0;
+        for (Employee employee : budgetDAORepo.getAllEmployee()) {
+            if (employee.getPosition() == Position.TEACHER) {
+                teacherSalariesSum += employee.getMonthlySalary();
+            }
+        }
+        return teacherSalariesSum;
     }
 }

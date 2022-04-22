@@ -1,6 +1,5 @@
 package com.inqoo;
 
-
 import com.inqoo.model.Employee;
 import com.inqoo.model.Student;
 
@@ -10,8 +9,6 @@ public interface BudgetDAO {
 
     void addStudent(Student student);
     void addEmployee(Employee employee);
-
     List<Student> getAllStudents();
-
     List<Employee> getAllEmployee();
 }

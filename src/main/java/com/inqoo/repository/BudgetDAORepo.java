@@ -5,14 +5,12 @@ import com.inqoo.model.Employee;
 import com.inqoo.model.Student;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class BudgetDAORepo implements BudgetDAO {
 
-    private Set<Student> students = new HashSet<>();
-    private List<Employee> employees = new ArrayList<>();
+    private List<Student> students = new ArrayList<>(50);
+    private List<Employee> employees = new ArrayList<>(5);
 
 
     @Override
@@ -22,12 +20,13 @@ public class BudgetDAORepo implements BudgetDAO {
 
     @Override
     public void addEmployee(Employee employee) {
+
         employees.add(employee);
     }
 
     @Override
     public List<Student> getAllStudents() {
-        return new ArrayList<>();
+        return new ArrayList<>(students);
     }
 
     @Override
