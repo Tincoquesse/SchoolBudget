@@ -17,8 +17,16 @@ public class Budget implements com.inqoo.Budget {
     private int classSize = 10;
     private int numberOfClasses = 1;
 
+
     public Budget(BudgetDAORepo budgetDAORepo) {
         this.budgetDAORepo = budgetDAORepo;
+    }
+
+    public void setNumberOfClasses(int numberOfClasses) {
+        if (numberOfClasses > 5) {
+            numberOfClasses = 5;
+        }
+        this.numberOfClasses = numberOfClasses;
     }
 
     @Override
@@ -28,7 +36,7 @@ public class Budget implements com.inqoo.Budget {
 
     public double getAdministrationSalariesSum() {
         for (Employee employee : budgetDAORepo.getAllEmployee()) {
-            if (employee.getPosition() == Position.ADMINITRATION) {
+            if (employee.getPosition() == Position.ADMINISTRATION) {
                 administrationSalariesSum += employee.getMonthlySalary();
             }
         }

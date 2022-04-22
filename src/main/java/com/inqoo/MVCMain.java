@@ -17,11 +17,13 @@ public class MVCMain {
         BudgetView budgetView = new BudgetView();
         BudgetControllerImplementation budgetController = new BudgetControllerImplementation(budget, budgetView, budgetDAORepo);
 
-
-        budgetController.addStudent(new Student("Kamil Kotlarz", 10000.0));
+        for (int i = 1; i <= 31; i++) {
+            budgetController.addStudent(new Student("Kamil Kotlarz", 1000.0));
+        }
         budgetController.addEmployee(new Employee("John Snow", 6000.0, Position.TEACHER));
+        budgetController.addEmployee(new Employee("John Snow", 6000.0, Position.ADMINISTRATION));
         budgetController.updateBudgetView();
-
+        System.out.println(budget.getNumberOfClasses());
 
     }
 }

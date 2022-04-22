@@ -34,9 +34,10 @@ public class BudgetControllerImplementation implements BudgetController {
 
     @Override
     public void addStudent(Student student) {
-        if (budgetDAORepo.getAllStudents().size()
-                < (budget.getClassSize() * budget.getNumberOfClasses())) {
+        int maxStudentsNumber = budget.getClassSize() * 5;
+        if (budgetDAORepo.getAllStudents().size() < maxStudentsNumber) {
             budgetDAORepo.addStudent(student);
+            budget.setNumberOfClasses(budgetDAORepo.getAllStudents().size() / budget.getClassSize() + 1);
         } else {
             System.out.println("Too many Students!");
         }
