@@ -1,6 +1,5 @@
 package com.inqoo;
 
-
 import com.inqoo.controller.BudgetControllerImplementation;
 import com.inqoo.model.Budget;
 import com.inqoo.model.Student;
@@ -19,18 +18,15 @@ public class MVCMain {
 
         budgetController.setClassSize(20);
 
-        for (int i = 1; i <= 20; i++) {
-            budgetController.addStudent(new Student("Kamil Kotlarz", 1000.0));
+        for (int i = 1; i <= 18; i++) {
+            budgetController.addStudent(new Student("Kamil Kotlarz", 1500.0));
         }
 
         budgetController.updateBudgetView(LocalDate.now());
 
         System.out.println("Liczba klas: " + budget.getNumberOfClasses());
         System.out.println("Liczba nauczycieli: " + budgetDAORepo.getAllTeachers().size());
-
-        Double d = 3.49;
-        System.out.println(d);
-        System.out.println((int) Math.round(d));
+        System.out.println("Liczba pracowników adminnistracji: " + budgetDAORepo.getAllAdministrationEmployee().size());
 
     }
 }

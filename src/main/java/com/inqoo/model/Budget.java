@@ -37,27 +37,32 @@ public class Budget implements com.inqoo.Budget {
     }
 
     @Override
-    public int setAdministrationEmployeeNumber() {
+    public void setAdministrationEmployeeNumber() {
         int numberOfTeachersAndStudents = budgetDAORepo.getAllStudents().size()
                 + budgetDAORepo.getAllTeachers().size();
+        int numberOfAdministrationEmployee;
 
         if (numberOfTeachersAndStudents < 20) {
-            Double temp = numberOfTeachersAndStudents * 0.1;
-            return (int) Math.round(temp);
+            double temp = numberOfTeachersAndStudents * 0.1;
+            numberOfAdministrationEmployee = (int) Math.round(temp);
         } else if (numberOfTeachersAndStudents < 37) {
-            Double temp = numberOfTeachersAndStudents * 0.23;
-            return (int) Math.round(temp);
+            double temp = numberOfTeachersAndStudents * 0.23;
+            numberOfAdministrationEmployee = (int) Math.round(temp);
         } else if (numberOfTeachersAndStudents < 50) {
-            Double temp = numberOfTeachersAndStudents * 0.28;
-            return (int) Math.round(temp);
+            double temp = numberOfTeachersAndStudents * 0.28;
+            numberOfAdministrationEmployee = (int) Math.round(temp);
         } else {
-            Double temp = numberOfTeachersAndStudents * 0.33;
-            return (int) Math.round(temp);
+            double temp = numberOfTeachersAndStudents * 0.33;
+            numberOfAdministrationEmployee = (int) Math.round(temp);
+        }
+        for (int i = 1; i <= numberOfAdministrationEmployee; i++) {
+            budgetDAORepo.addEmployee(new Employee("Default Administrator", 6000, Position.ADMINISTRATION));
         }
     }
 
     public double getAdministrationSalariesSum() {
         administrationSalariesSum = 0;
+        setAdministrationEmployeeNumber();
 
         for (Employee employee : budgetDAORepo.getAllAdministrationEmployee()) {
             administrationSalariesSum += employee.getMonthlySalary();

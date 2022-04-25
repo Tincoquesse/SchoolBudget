@@ -16,7 +16,7 @@ public interface Budget {
 
     double getBudgetBalance();
 
-    int setAdministrationEmployeeNumber();
+    void setAdministrationEmployeeNumber();
 
 
 }
