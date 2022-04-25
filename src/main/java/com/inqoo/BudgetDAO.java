@@ -8,7 +8,15 @@ import java.util.List;
 public interface BudgetDAO {
 
     void addStudent(Student student);
+
     void addEmployee(Employee employee);
+
     List<Student> getAllStudents();
+
     List<Employee> getAllEmployee();
+
+    List<Employee> getAllTeachers();
+
+    List<Employee> getAllAdministrationEmployee();
+
 }

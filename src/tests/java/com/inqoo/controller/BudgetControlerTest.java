@@ -6,6 +6,5 @@ public class BudgetControlerTest {
 
     @Test
     public void updateView(){
-
     }
 }

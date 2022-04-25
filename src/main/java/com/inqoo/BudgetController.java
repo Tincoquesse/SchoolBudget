@@ -3,9 +3,11 @@ package com.inqoo;
 import com.inqoo.model.Employee;
 import com.inqoo.model.Student;
 
+import java.time.LocalDate;
+
 public interface BudgetController {
 
-    void updateBudgetView();
+    void updateBudgetView(LocalDate localDate);
 
     void setMonthlyTuition(double monthlyTuition);
 

@@ -3,6 +3,8 @@ package com.inqoo.model;
 import com.inqoo.repository.BudgetDAORepo;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 
 @Data
 public class Budget implements com.inqoo.Budget {
@@ -34,35 +36,60 @@ public class Budget implements com.inqoo.Budget {
         return studentsTuitionSum - teacherSalariesSum - administrationSalariesSum - buildingCosts;
     }
 
-    public double getAdministrationSalariesSum() {
-        for (Employee employee : budgetDAORepo.getAllEmployee()) {
-            if (employee.getPosition() == Position.ADMINISTRATION) {
-                administrationSalariesSum += employee.getMonthlySalary();
-            }
+    @Override
+    public int setAdministrationEmployeeNumber() {
+        int numberOfTeachersAndStudents = budgetDAORepo.getAllStudents().size()
+                + budgetDAORepo.getAllTeachers().size();
+
+        if (numberOfTeachersAndStudents < 20) {
+            Double temp = numberOfTeachersAndStudents * 0.1;
+            return (int) Math.round(temp);
+        } else if (numberOfTeachersAndStudents < 37) {
+            Double temp = numberOfTeachersAndStudents * 0.23;
+            return (int) Math.round(temp);
+        } else if (numberOfTeachersAndStudents < 50) {
+            Double temp = numberOfTeachersAndStudents * 0.28;
+            return (int) Math.round(temp);
+        } else {
+            Double temp = numberOfTeachersAndStudents * 0.33;
+            return (int) Math.round(temp);
         }
-        return administrationSalariesSum;
+    }
+
+    public double getAdministrationSalariesSum() {
+        administrationSalariesSum = 0;
+
+        for (Employee employee : budgetDAORepo.getAllAdministrationEmployee()) {
+            administrationSalariesSum += employee.getMonthlySalary();
+        }
+        return administrationSalariesSum * 0.7;
     }
 
     public double getStudentsTuitionSum() {
         studentsTuitionSum = 0;
+
         for (Student student : budgetDAORepo.getAllStudents()) {
             studentsTuitionSum += student.getMonthlyTuition();
         }
         return studentsTuitionSum;
     }
 
-    public double getBuildingCosts() {
+    public double getBuildingCosts(LocalDate localDate) {
         buildingCosts = 0;
-        buildingCosts = numberOfClasses * 2500;
+        if (localDate.isAfter(LocalDate.of(2021, 9, 30)) &&
+                localDate.isBefore(LocalDate.of(2022, 4, 1))) {
+            buildingCosts = numberOfClasses * (2500 + 2000);
+        } else {
+            buildingCosts = numberOfClasses * 2500;
+        }
         return buildingCosts;
     }
 
     public double getTeacherSalariesSum() {
         teacherSalariesSum = 0;
-        for (Employee employee : budgetDAORepo.getAllEmployee()) {
-            if (employee.getPosition() == Position.TEACHER) {
-                teacherSalariesSum += employee.getMonthlySalary();
-            }
+
+        for (Employee employee : budgetDAORepo.getAllTeachers()) {
+            teacherSalariesSum += employee.getMonthlySalary();
         }
         return teacherSalariesSum;
     }

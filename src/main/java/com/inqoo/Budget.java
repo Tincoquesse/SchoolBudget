@@ -1,15 +1,22 @@
 package com.inqoo;
 
+import java.time.LocalDate;
+
 public interface Budget {
 
-    double getBudgetBalance();
+    void setNumberOfClasses(int numberOfClasses);
 
     double getAdministrationSalariesSum();
 
+    double getTeacherSalariesSum();
+
     double getStudentsTuitionSum();
 
-    double getBuildingCosts();
+    double getBuildingCosts(LocalDate localDate);
 
-    double getTeacherSalariesSum();
+    double getBudgetBalance();
+
+    int setAdministrationEmployeeNumber();
+
 
 }
