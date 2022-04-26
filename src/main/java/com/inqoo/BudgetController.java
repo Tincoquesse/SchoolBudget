@@ -21,5 +21,7 @@ public interface BudgetController {
 
     void setTeachersSalary(double teacherSalary);
 
+    void setAdministrationSalary(double administrationSalary);
+
 
 }

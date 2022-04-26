@@ -31,38 +31,51 @@ public class Budget implements com.inqoo.Budget {
         this.numberOfClasses = numberOfClasses;
     }
 
+    public void setTeachersSalary(double teacherSalary) {
+        for (Employee employee : budgetDAORepo.getAllTeachers()) {
+            employee.setMonthlySalary(teacherSalary);
+        }
+    }
+
+    public void setAdministrationSalary(double administrationSalary) {
+        for (Employee employee : budgetDAORepo.getAllAdministrationEmployee()) {
+            employee.setMonthlySalary(administrationSalary);
+        }
+    }
+
     @Override
     public double getBudgetBalance() {
         return studentsTuitionSum - teacherSalariesSum - administrationSalariesSum - buildingCosts;
     }
 
     @Override
-    public void setAdministrationEmployeeNumber() {
+    public int getAdministrationEmployeeNumber() {
         int numberOfTeachersAndStudents = budgetDAORepo.getAllStudents().size()
                 + budgetDAORepo.getAllTeachers().size();
-        int numberOfAdministrationEmployee;
+        int numberOfAdministrationEmployees;
 
         if (numberOfTeachersAndStudents < 20) {
             double temp = numberOfTeachersAndStudents * 0.1;
-            numberOfAdministrationEmployee = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(temp);
         } else if (numberOfTeachersAndStudents < 37) {
             double temp = numberOfTeachersAndStudents * 0.23;
-            numberOfAdministrationEmployee = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(temp);
         } else if (numberOfTeachersAndStudents < 50) {
             double temp = numberOfTeachersAndStudents * 0.28;
-            numberOfAdministrationEmployee = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(temp);
         } else {
             double temp = numberOfTeachersAndStudents * 0.33;
-            numberOfAdministrationEmployee = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(temp);
         }
-        for (int i = 1; i <= numberOfAdministrationEmployee; i++) {
-            budgetDAORepo.addEmployee(new Employee("Default Administrator", 6000, Position.ADMINISTRATION));
-        }
+        return numberOfAdministrationEmployees;
+//        for (int i = 1; i <= numberOfAdministrationEmployees; i++) {
+//            budgetDAORepo.addEmployee(new Employee("Default Administrator", 6000, Position.ADMINISTRATION));
+//        }
     }
 
     public double getAdministrationSalariesSum() {
         administrationSalariesSum = 0;
-        setAdministrationEmployeeNumber();
+//        getAdministrationEmployeeNumber();
 
         for (Employee employee : budgetDAORepo.getAllAdministrationEmployee()) {
             administrationSalariesSum += employee.getMonthlySalary();

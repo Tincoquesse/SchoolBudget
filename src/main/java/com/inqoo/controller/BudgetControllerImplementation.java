@@ -12,9 +12,9 @@ import java.time.LocalDate;
 
 public class BudgetControllerImplementation implements BudgetController {
 
-    private Budget budget;
-    private BudgetView view;
-    private BudgetDAORepo budgetDAORepo;
+    private final Budget budget;
+    private final BudgetView view;
+    private final BudgetDAORepo budgetDAORepo;
 
 
     public BudgetControllerImplementation(Budget budget, BudgetView view, BudgetDAORepo budgetDAORepo) {
@@ -26,7 +26,9 @@ public class BudgetControllerImplementation implements BudgetController {
     public void updateBudgetView(LocalDate localDate) {
         view.printBudgetDetails(budget.getStudentsTuitionSum(), budget.getTeacherSalariesSum(),
                 budget.getAdministrationSalariesSum(), budget.getBuildingCosts(localDate),
-                budget.getBudgetBalance());
+                budget.getBudgetBalance(), budget.getNumberOfClasses(),
+                budgetDAORepo.getAllTeachers().size(),
+                budgetDAORepo.getAllAdministrationEmployee().size());
     }
 
     @Override
@@ -49,6 +51,9 @@ public class BudgetControllerImplementation implements BudgetController {
         while (budget.getNumberOfClasses() > budgetDAORepo.getAllTeachers().size()) {
             addEmployee(new Employee("Default Teacher", 6000.0, Position.TEACHER));
         }
+        while (budget.getAdministrationEmployeeNumber() > budgetDAORepo.getAllAdministrationEmployee().size()) {
+            addEmployee(new Employee("Default Administration", 6000.0, Position.ADMINISTRATION));
+        }
     }
 
     @Override
@@ -68,10 +73,11 @@ public class BudgetControllerImplementation implements BudgetController {
 
     @Override
     public void setTeachersSalary(double teacherSalary) {
-        for (Employee employee : budgetDAORepo.getAllEmployee()) {
-            if (employee.getPosition() == Position.TEACHER) {
-                employee.setMonthlySalary(teacherSalary);
-            }
-        }
+        budget.setTeachersSalary(teacherSalary);
+    }
+
+    @Override
+    public void setAdministrationSalary(double administrationSalary) {
+        budget.setAdministrationSalary(administrationSalary);
     }
 }
