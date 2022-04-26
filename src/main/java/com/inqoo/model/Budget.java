@@ -50,27 +50,22 @@ public class Budget implements com.inqoo.Budget {
 
     @Override
     public int getAdministrationEmployeeNumber() {
+
         int numberOfTeachersAndStudents = budgetDAORepo.getAllStudents().size()
                 + budgetDAORepo.getAllTeachers().size();
         int numberOfAdministrationEmployees;
 
         if (numberOfTeachersAndStudents < 20) {
-            double temp = numberOfTeachersAndStudents * 0.1;
-            numberOfAdministrationEmployees = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(numberOfTeachersAndStudents * 0.1);
         } else if (numberOfTeachersAndStudents < 37) {
-            double temp = numberOfTeachersAndStudents * 0.23;
-            numberOfAdministrationEmployees = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(numberOfTeachersAndStudents * 0.23);
         } else if (numberOfTeachersAndStudents < 50) {
-            double temp = numberOfTeachersAndStudents * 0.28;
-            numberOfAdministrationEmployees = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(numberOfTeachersAndStudents * 0.28);
         } else {
-            double temp = numberOfTeachersAndStudents * 0.33;
-            numberOfAdministrationEmployees = (int) Math.round(temp);
+            numberOfAdministrationEmployees = (int) Math.round(numberOfTeachersAndStudents * 0.33);
         }
+
         return numberOfAdministrationEmployees;
-//        for (int i = 1; i <= numberOfAdministrationEmployees; i++) {
-//            budgetDAORepo.addEmployee(new Employee("Default Administrator", 6000, Position.ADMINISTRATION));
-//        }
     }
 
     public double getAdministrationSalariesSum() {

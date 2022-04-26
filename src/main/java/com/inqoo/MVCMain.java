@@ -16,11 +16,11 @@ public class MVCMain {
         BudgetView budgetView = new BudgetView();
         BudgetControllerImplementation budgetController = new BudgetControllerImplementation(budget, budgetView, budgetDAORepo);
 
-        budgetController.setClassSize(13);
+        budgetController.setClassSize(20);
 
         /* ZAPEŁNIAM LISTĘ STUDENTÓW */
         for (int i = 1; i <= 13; i++) {
-            budgetController.addStudent(new Student("Kamil Kotlarz", 1600));
+            budgetController.addStudent(new Student("Default Student", 1595));
         }
         budgetController.updateBudgetView(LocalDate.now());
     }
